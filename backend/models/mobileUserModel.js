@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
-const validator = require('validator')
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+import validator from 'validator'
 
-const MobileUserSchema = new Schema({
+const MobileUserSchema = new mongoose.Schema({
     username: {
         type: String,
-        unique: 'The username is used by another user.',
+        unique: [true,'The username is used by another user.'],
         required: [true, 'Username is required.'],
         trim: true,
         minlength: [2, 'The username must contain at least {MINLENGTH} characters.'],
@@ -14,7 +14,7 @@ const MobileUserSchema = new Schema({
     },
     email: {
         type: String,
-        unique: 'The email is used by another user.',
+        unique: [true,'The email is used by another user.'],
         required: [true, 'Email is required.'],
         trim: true,
         maxlenght: [320, 'The email maximum length is {MAXLENGTH} characters.'],
@@ -61,18 +61,63 @@ const MobileUserSchema = new Schema({
         minlength: [8, 'The password must be of minimum length {MINLENGTH} characters.'],
         maxlenght: [1000, 'The password maximum length {MAXLENGTH} characters.']
     },
-});
-
-MobileUserSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString()
-        delete returnedObject._id
-        delete returnedObject.__v
-        //do not reveal passwordHash
-        delete returnedObject.password
+}, {
+    timestamps: true,
+    versionKey: false,
+    toJSON: {
+      /**
+       * Performs a transformation of the resulting object to remove sensitive information.
+       *
+       * @param {object} doc - The mongoose document which is being converted.
+       * @param {object} ret - The plain object representation which has been converted.
+       */
+      transform: function (doc, ret) {
+        delete ret._id
+        delete ret.password
+      },
+      virtuals: true // ensure virtual fields are serialized
     }
-})
+  })
 
-const MobileUser = mongoose.model("user", MobileUserSchema);
-
-module.exports = MobileUser;
+  MobileUserSchema.virtual('id').get(function () {
+    return this._id.toHexString()
+  })
+  
+  // Salts and hashes the password before save.
+  MobileUserSchema.pre('save', async function () {
+    this.password = await bcrypt.hash(this.password, 10)
+  })
+  
+  /**
+   * Authenticates a account.
+   *
+   * @param {string} email - The account's email.
+   * @param {string} password - The account's password.
+   * @returns {Promise<Account>} A promise that resolves into an object representing the account.
+   */
+  MobileUserSchema.statics.authenticate = async function (email, password) {
+    const account = await this.findOne({ email })
+  
+    // If no account is found or password is wrong, throw an error.
+    if (!account || !(await bcrypt.compare(password, account.password))) {
+      const error = new Error()
+      error.name = 'credentialsError'
+      throw error
+    }
+  
+    return account
+  }
+  
+  /**
+   * Creates and inserts a new account.
+   *
+   * @param {object} accountData - The account data.
+   * @returns {Promise<Account>} The Promise to be fulfilled.
+   */
+  MobileUserSchema.statics.insert = async function (accountData) {
+    const account = new MobileAccount(accountData)
+    return account.save()
+  }
+  
+  // Create a model using the schema.
+  export const MobileAccount = mongoose.model('MobileUser', MobileUserSchema)

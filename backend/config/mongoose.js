@@ -1,14 +1,18 @@
-const mongoose =  require('mongoose');
-
-const connectDB = async () => {
+import mongoose from 'mongoose'
+/**
+ * Establishes connection to db
+ *
+ * @returns {Promise} 
+ */
+export const connectDB = async () => {
   // get notifications about events
   mongoose.connection.on('connected', () =>
     console.log('Mongoose connection is open.')
   )
 
-  mongoose.connection.on('error', err =>
+ /* mongoose.connection.on('error', err =>
     console.error(`Mongoose connection error has occurred: ${err}`)
-  )
+  )*/
 
   mongoose.connection.on('disconnected', () =>
     console.log('Mongoose connection is disconnected.')
@@ -36,4 +40,3 @@ const connectDB = async () => {
   };
   connectWithRetry();
 }
-module.exports = connectDB;
