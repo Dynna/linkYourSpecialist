@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LinkYourSpecialistMobile">
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".ui.RegistrationActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".AuthenticationActivity"
+            android:name=".ui.AuthenticationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

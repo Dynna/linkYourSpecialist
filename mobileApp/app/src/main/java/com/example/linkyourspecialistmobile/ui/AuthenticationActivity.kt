@@ -1,9 +1,10 @@
-package com.example.linkyourspecialistmobile
+package com.example.linkyourspecialistmobile.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.linkyourspecialistmobile.R
 
 class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

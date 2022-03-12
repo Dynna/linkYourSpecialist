@@ -1,4 +1,4 @@
-package com.example.linkyourspecialistmobile
+package com.example.linkyourspecialistmobile.helpers
 
 import android.text.TextUtils
 import android.util.Patterns

@@ -41,33 +41,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:fontFamily="@font/cabin"
-                android:text="Email"
-                android:textSize="20dp" />
-
-            <EditText
-                android:id="@+id/editTextTextEmailAddress"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:layout_marginLeft="60dp"
-                android:textColor="@color/dark_green"
-                android:outlineAmbientShadowColor="@color/dark_green"
-                android:textColorHint="@color/dark_green"
-                android:backgroundTint="@color/dark_green"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:fontFamily="@font/cabin"
                 android:text="Username"
                 android:textSize="20dp" />
 
@@ -82,6 +55,35 @@
                 android:outlineAmbientShadowColor="@color/dark_green"
                 android:textColorHint="@color/dark_green"
                 android:backgroundTint="@color/dark_green"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:fontFamily="@font/cabin"
+                android:text="Email"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:layout_marginLeft="60dp"
+                android:textColor="@color/dark_green"
+                android:outlineAmbientShadowColor="@color/dark_green"
+                android:textColorHint="@color/dark_green"
+                android:backgroundTint="@color/dark_green"/>
+
         </LinearLayout>
 
         <LinearLayout
