@@ -4,19 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linkyourspecialistmobile.data.HomeRepository
-import com.example.linkyourspecialistmobile.data.RegistrationResponseModel
+import com.example.linkyourspecialistmobile.data.LoginRequestModel
+import com.example.linkyourspecialistmobile.data.LoginResponseModel
 import com.example.linkyourspecialistmobile.data.RegistrationRequestModel
 
-class RegistrationViewModel : ViewModel() {
+class LoginViewModel : ViewModel() {
     private var homeRepository: HomeRepository? = null
-    var registrationLiveData: LiveData<RegistrationResponseModel>? = null
+    var loginLiveData: LiveData<LoginResponseModel>? = null
 
     init {
         homeRepository = HomeRepository()
-        registrationLiveData = MutableLiveData()
+        loginLiveData = MutableLiveData()
     }
 
-    fun signup(registrationRequestModel: RegistrationRequestModel) {
-        registrationLiveData = homeRepository?.signup(registrationRequestModel)
+    fun login(loginRequestModel: LoginRequestModel) {
+        loginLiveData = homeRepository?.login(loginRequestModel)
     }
 }

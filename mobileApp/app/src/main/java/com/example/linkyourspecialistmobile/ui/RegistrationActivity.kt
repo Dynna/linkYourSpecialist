@@ -3,13 +3,12 @@ package com.example.linkyourspecialistmobile.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.linkyourspecialistmobile.R
-import com.example.linkyourspecialistmobile.data.RegistrationUserModel
+import com.example.linkyourspecialistmobile.data.RegistrationRequestModel
 import com.example.linkyourspecialistmobile.helpers.RegistrationFormValidator
 import com.example.linkyourspecialistmobile.viewmodel.RegistrationViewModel
 
@@ -34,14 +33,14 @@ class RegistrationActivity : AppCompatActivity() {
 
         Log.d("USERNAME", username.text.toString())
 
-        val registrationUserModel = RegistrationUserModel()
-        registrationUserModel.username = username.text.toString()
-        registrationUserModel.email = email.text.toString()
-        registrationUserModel.name = name.text.toString()
-        registrationUserModel.surname = surname.text.toString()
-        registrationUserModel.password = password.text.toString()
+        val registrationRequestModel = RegistrationRequestModel()
+        registrationRequestModel.username = username.text.toString()
+        registrationRequestModel.email = email.text.toString()
+        registrationRequestModel.name = name.text.toString()
+        registrationRequestModel.surname = surname.text.toString()
+        registrationRequestModel.password = password.text.toString()
 
-        viewModel.signup(registrationUserModel)
+        viewModel.signup(registrationRequestModel)
         viewModel.registrationLiveData?.observe(this, Observer {
             if (it != null) {
                 showToast("New user registered successfully")

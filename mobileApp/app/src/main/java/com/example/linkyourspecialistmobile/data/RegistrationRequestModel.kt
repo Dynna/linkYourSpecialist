@@ -3,7 +3,7 @@ package com.example.linkyourspecialistmobile.data
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class RegistrationUserModel(
+data class RegistrationRequestModel(
     @SerializedName("username")
     @Expose
     var username: String? = "",
