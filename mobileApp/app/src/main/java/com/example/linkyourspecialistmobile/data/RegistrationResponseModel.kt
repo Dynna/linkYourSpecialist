@@ -23,7 +23,7 @@ data class RegistrationResponseModel(
 
     @SerializedName("birthday")
     @Expose
-    val birthday: Date?,
+    val birthday: String?,
 
     @SerializedName("categories")
     @Expose
@@ -43,11 +43,11 @@ data class RegistrationResponseModel(
 
     @SerializedName("createdAt")
     @Expose
-    val createdAt: Date?,
+    val createdAt: String?,
 
     @SerializedName("updatedAt")
     @Expose
-    val updatedAt: Date?,
+    val updatedAt: String?,
 
     @SerializedName("id")
     @Expose

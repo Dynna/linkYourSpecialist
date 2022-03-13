@@ -6,6 +6,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiInterface {
-    @POST("register")
+    @POST("/api/mobileUsers/register")
     fun signup(@Body registrationUserModel: RegistrationUserModel): Call<RegistrationResponseModel>
 }

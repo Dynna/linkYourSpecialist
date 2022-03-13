@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-const val BASEURL = "http://localhost:4002/api/mobileUsers/"
+const val BASEURL = "http://10.0.2.2:4002"
 
 class ApiClient {
     companion object {
@@ -17,8 +17,8 @@ class ApiClient {
                 .setLenient()
                 .create()
             val okHttpClient = OkHttpClient.Builder()
-                .readTimeout(200, TimeUnit.SECONDS)
-                .connectTimeout(200, TimeUnit.SECONDS)
+                .readTimeout(500, TimeUnit.SECONDS)
+                .connectTimeout(500, TimeUnit.SECONDS)
                 .build()
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
