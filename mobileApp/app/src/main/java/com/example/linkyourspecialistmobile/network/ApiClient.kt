@@ -1,5 +1,6 @@
 package com.example.linkyourspecialistmobile.network
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -46,4 +46,5 @@ dependencies {
     //lifecycle
     //implementation 'androidx.lifecycle:lifecycle-extentions:2.2.0'
     implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
 }

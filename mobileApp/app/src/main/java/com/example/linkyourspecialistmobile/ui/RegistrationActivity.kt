@@ -1,5 +1,6 @@
 package com.example.linkyourspecialistmobile.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -44,6 +45,8 @@ class RegistrationActivity : AppCompatActivity() {
         viewModel.registrationLiveData?.observe(this, Observer {
             if (it != null) {
                 showToast("New user registered successfully")
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             } else {
                 showToast("Cannot register new user at moment")
             }
