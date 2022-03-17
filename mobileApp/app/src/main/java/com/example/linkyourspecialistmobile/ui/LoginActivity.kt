@@ -1,6 +1,7 @@
 package com.example.linkyourspecialistmobile.ui
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -48,7 +49,12 @@ class LoginActivity : AppCompatActivity() {
                         viewModel.loginLiveData!!.value?.user.toString()
                     )
                     sharedPreferencesEditor.apply()
-                    Log.d("TOKEN", userSharedPreferences.getString("access_token", "not logged in").toString())
+                    Log.d(
+                        "TOKEN",
+                        userSharedPreferences.getString("access_token", "not logged in").toString()
+                    )
+                    val intent = Intent(this, MainNavigationActivity::class.java)
+                    startActivity(intent)
                 } else {
                     showToast("Cannot login user at moment")
                 }
