@@ -10,6 +10,7 @@ const jwtService = new JWTService()
 // POST
 router.post('/register', (req, res, next) => controller.register(req, res, next))
 router.post('/login', (req, res, next) => controller.login(req, res, next))
+router.get('/welcome', (req, res) => res.json({ message: 'Welcome to web app' }))
 
 // DELETE
 router.delete('/user',

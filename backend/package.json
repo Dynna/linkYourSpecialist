@@ -8,7 +8,7 @@
     "fs": "^0.0.1-security",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.5",
+    "mongoose": "^6.2.7",
     "nodemon": "^2.0.15",
     "validator": "^13.7.0"
   },

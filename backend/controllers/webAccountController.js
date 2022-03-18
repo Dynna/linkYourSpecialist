@@ -38,6 +38,7 @@ export class WebAccountController {
     async register(req, res, next) {
         try {
             const account = await WebAccount.insert({
+                username: req.body.username,
                 email: req.body.email,
                 name: req.body.name,
                 surname: req.body.surname,
