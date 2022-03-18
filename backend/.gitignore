@@ -61,5 +61,5 @@ typings/
 .next
 .cache
 package-lock.json
-package.json
+
 
