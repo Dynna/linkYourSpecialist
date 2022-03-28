@@ -17,7 +17,7 @@ export class MobileAccountController {
             }
             const secretKey = process.env.TOKEN_SECRET_KEY
             const accessToken = jwt.sign(payload, secretKey, {
-                expiresIn: Number(process.env.ACCESS_TOKEN_LIFE)
+                expiresIn: '500d'
             })
             res
                 .status(200)
