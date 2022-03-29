@@ -16,3 +16,8 @@ router.delete('/user',
   (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.delete(req, res, next)
 )
+
+//USER POSTS
+router.post('/newPost',
+  (req, res, next) => controller.createPost(req, res, next)
+)

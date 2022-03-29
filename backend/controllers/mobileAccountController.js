@@ -2,6 +2,7 @@ import fs from 'fs/promises'
 import jwt from 'jsonwebtoken'
 import createError from 'http-errors'
 import { MobileAccount } from '../models/mobileUserModel.js'
+import { PostModel } from '../models/servicePostModel.js'
 import dotenv from 'dotenv'
 dotenv.config();
 export class MobileAccountController {
@@ -46,7 +47,8 @@ export class MobileAccountController {
                 birthday: req.body.birthday,
                 categories: req.body.categories,
                 experience: req.body.experience,
-                contactInfo: req.body.contactInfo,
+                phone: req.body.phone,
+                location: req.body.location,
                 password: req.body.password
             })
             res
@@ -87,6 +89,23 @@ export class MobileAccountController {
             res
                 .status(204)
                 .end()
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async createPost(req, res, next) {
+        try {
+            const post = await PostModel.insert({
+                userID: req.body.userID,
+                category: req.body.category,
+                name: req.body.name,
+                description: req.body.description,
+                serveAtHome: req.body.serveAtHome
+            })
+            res
+                .status(201)
+                .json(post)
         } catch (error) {
             next(error)
         }
