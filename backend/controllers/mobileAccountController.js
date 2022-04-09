@@ -110,4 +110,19 @@ export class MobileAccountController {
             next(error)
         }
     }
+
+
+    async getPosts(req, res, next) {
+        try {
+            const id = req.headers['userid']
+            const posts = await PostModel.find({
+                userID: id
+            })
+            res
+                .status(200)
+                .json(posts)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
