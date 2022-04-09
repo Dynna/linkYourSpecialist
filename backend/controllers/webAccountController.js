@@ -46,6 +46,7 @@ export class WebAccountController {
             })
             res
                 .status(201)
+                .send(`Hello ${req.body.name}! Your account has been registered.`)
                 .json(account)
         } catch (error) {
             let err = error

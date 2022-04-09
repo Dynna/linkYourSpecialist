@@ -1,6 +1,7 @@
 import express from 'express'
 import { router } from './routes/router.js'
 import { connectDB } from './config/mongoose.js'
+import cors from 'cors'
 
 /**
  * The main function of the application.
@@ -10,6 +11,13 @@ const main = async () => {
 
     const app = express()
 
+    const corsOptions = {
+        origin: '*',
+        credentials: true,
+        optionSuccessStatus: 200
+    }
+
+    app.use(cors(corsOptions))
     // Parse requests of the content type application/json.
     app.use(express.json())
 
