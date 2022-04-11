@@ -19,12 +19,12 @@ router.delete('/user',
 
 //USER POSTS
 router.post('/newPost',
-  //(req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.createPost(req, res, next)
 )
 
 //when the request will be created we need to add a header with userid
 router.get('/posts',
-  //(req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.getPosts(req, res, next)
 )
