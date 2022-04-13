@@ -31,7 +31,7 @@ export class WebAccountController {
                 err.innerException = error
             }
 
-            next(err)
+            next(res.send(err.message))
         }
     }
 
@@ -67,8 +67,12 @@ export class WebAccountController {
                 err = createError(400)
                 err.innerException = error
             }
+            else if (error.email === 'ValidationError') {
+                err = createError(400)
+                err.innerException = error
+            }
 
-            next(err)
+            next(res.send(err.message))
         }
     }
 

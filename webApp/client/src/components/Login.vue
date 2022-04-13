@@ -3,28 +3,13 @@
     <v-flex md4 xs4 offset-xs3 style="width: 50%; margin-top: 10px; align: center">
       <div class="white elevation-2">
         <v-app-bar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-app-bar>
 
         <div class="pl-4 pr-4 pt-2 pb-2">
           <v-text-field
-            label="Username"
-            v-model="username"
-          ></v-text-field>
-          <br>
-          <v-text-field
             label="Email"
             v-model="email"
-          ></v-text-field>
-          <br>
-          <v-text-field
-            label="Name"
-            v-model="name"
-          ></v-text-field>
-          <br>
-          <v-text-field
-            label="Surname"
-            v-model=surname
           ></v-text-field>
           <br>
           <v-text-field
@@ -35,8 +20,8 @@
           <br>
           <v-btn
             class="cyan"
-            @click="register">
-            Register
+            @click="login">
+            Login
           </v-btn>
         </div>
       </div>
@@ -51,21 +36,15 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      username: '',
       email: '',
-      name: '',
-      surname: '',
       password: ''
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        const response = await AuthenticationService.register({
-          username: this.username,
+        const response = await AuthenticationService.login({
           email: this.email,
-          name: this.name,
-          surname: this.surname,
           password: this.password
         })
         // this.$store.dispatch('setToken', response.data.token)
