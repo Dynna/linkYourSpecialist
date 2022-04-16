@@ -17,11 +17,6 @@ const ServicePostModel = new mongoose.Schema({
     type: String,
     required: false
   },
-  serveAtHome: {
-    type: Boolean,
-    required: false,
-    default: false
-  }
 }, {
   versionKey: false,
   virtuals: true

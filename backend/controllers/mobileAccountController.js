@@ -96,7 +96,7 @@ export class MobileAccountController {
 
     async createPost(req, res, next) {
         try {
-            console.log("22222222222")
+            const message = {message: "successful"}
             const post = await PostModel.insert({
                 userID: req.body.userID,
                 category: req.body.category,
@@ -106,7 +106,7 @@ export class MobileAccountController {
             })
             res
                 .status(201)
-                .json(post)
+                .json(message)
         } catch (error) {
             next(error)
         }
