@@ -3,4 +3,14 @@
     <string name="sign_up"><u>Sign Up</u></string>
     <string name="sign_in">Sign In</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="posts_categories">
+        <item>Makeup</item>
+        <item>Hair Removal and waxing</item>
+        <item>Eyelashes and Eyebrows</item>
+        <item>Skin Care and SPA</item>
+        <item>Nail Care</item>
+        <item>Haircuts and Styling</item>
+        <item>Facial Treatments</item>
+        <item>Body Massage</item>
+    </string-array>
 </resources>

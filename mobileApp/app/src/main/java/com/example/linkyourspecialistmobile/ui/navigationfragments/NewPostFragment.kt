@@ -1,60 +1,76 @@
 package com.example.linkyourspecialistmobile.ui.navigationfragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import com.example.linkyourspecialistmobile.R
+import com.example.linkyourspecialistmobile.data.HomeRepository
+import com.example.linkyourspecialistmobile.data.NewPostModel
+import com.example.linkyourspecialistmobile.databinding.FragmentNewPostBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [NewPostFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class NewPostFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var homeRepository: HomeRepository? = HomeRepository()
+    private lateinit var binding: FragmentNewPostBinding
+    private lateinit var userSharedPreferences: SharedPreferences
+    private lateinit var createPostButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_post, container, false)
+        binding = FragmentNewPostBinding.inflate(inflater, container, false)
+        userSharedPreferences = activity?.getSharedPreferences("UserData", 0)!!
+
+        //set spinner elements
+        val spinner: Spinner = binding.categoriesSpinner
+        ArrayAdapter.createFromResource(
+            context!!,
+            R.array.posts_categories,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        createPostButton = binding.createPostButton
+        createPostButton.setOnClickListener{
+            createPost(spinner)
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.newPostFragment, PostsFragment())
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NewPostFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NewPostFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun createPost(spinner: Spinner) {
+        val serviceName: EditText = binding.serviceName
+        val serviceCategory: String = spinner.selectedItem.toString()
+        val serviceDescription: EditText = binding.serviceDescription
+        val userid: String =
+            userSharedPreferences.getString("id", "not found").toString()
+        val accessToken: String = "Bearer " +
+                userSharedPreferences.getString("access_token", "not logged in").toString()
+        val newPostModel = NewPostModel()
+        newPostModel.category = serviceCategory
+        newPostModel.description = serviceDescription.text.toString()
+        newPostModel.name = serviceName.text.toString()
+        newPostModel.userID = userid
+        homeRepository?.createPost(accessToken,newPostModel)
     }
+
 }

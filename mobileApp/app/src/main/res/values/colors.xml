@@ -10,4 +10,5 @@
     <color name="olive_background">#adb4ad</color>
     <color name="dark_olive_button">#6A7758</color>
     <color name="dark_green">#556b2f</color>
+    <color name="light_grey">#c3c9c3</color>
 </resources>

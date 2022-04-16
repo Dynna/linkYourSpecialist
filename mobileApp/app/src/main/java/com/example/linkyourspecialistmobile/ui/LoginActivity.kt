@@ -45,8 +45,44 @@ class LoginActivity : AppCompatActivity() {
                         viewModel.loginLiveData!!.value?.access_token.toString()
                     )
                     sharedPreferencesEditor.putString(
-                        "user_data",
-                        viewModel.loginLiveData!!.value?.user.toString()
+                        "username",
+                        viewModel.loginLiveData!!.value?.user?.username.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "email",
+                        viewModel.loginLiveData!!.value?.user?.email.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "name",
+                        viewModel.loginLiveData!!.value?.user?.name.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "surname",
+                        viewModel.loginLiveData!!.value?.user?.surname.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "birthday",
+                        viewModel.loginLiveData!!.value?.user?.birthday.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "categories",
+                        viewModel.loginLiveData!!.value?.user?.categories.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "experience",
+                        viewModel.loginLiveData!!.value?.user?.experience.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "phone",
+                        viewModel.loginLiveData!!.value?.user?.phone.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "location",
+                        viewModel.loginLiveData!!.value?.user?.location.toString()
+                    )
+                    sharedPreferencesEditor.putString(
+                        "id",
+                        viewModel.loginLiveData!!.value?.user?.id.toString()
                     )
                     sharedPreferencesEditor.apply()
                     Log.d(

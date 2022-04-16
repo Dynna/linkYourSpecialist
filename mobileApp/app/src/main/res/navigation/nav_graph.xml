@@ -11,10 +11,10 @@
         android:label="fragment_posts"
         tools:layout="@layout/fragment_posts" />
     <fragment
-        android:id="@+id/newPostFragment"
-        android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.NewPostFragment"
+        android:id="@+id/availabilityFragment"
+        android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.AvailabilityFragment"
         android:label="fragment_new_post"
-        tools:layout="@layout/fragment_new_post" />
+        tools:layout="@layout/fragment_availability" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.ProfileFragment"

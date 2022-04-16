@@ -7,9 +7,9 @@
         android:icon="@drawable/home_bottom_nav"
         android:title="Posts" />
     <item
-        android:id="@+id/newPostFragment"
-        android:icon="@drawable/add_circle_bottom_nav"
-        android:title="New Post" />
+        android:id="@+id/availabilityFragment"
+        android:icon="@drawable/calendar_icon"
+        android:title="Availability" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/account_bottom_nav"

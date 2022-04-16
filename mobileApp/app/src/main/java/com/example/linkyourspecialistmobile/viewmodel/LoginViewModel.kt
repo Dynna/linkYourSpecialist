@@ -1,13 +1,11 @@
 package com.example.linkyourspecialistmobile.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linkyourspecialistmobile.data.HomeRepository
 import com.example.linkyourspecialistmobile.data.LoginRequestModel
 import com.example.linkyourspecialistmobile.data.LoginResponseModel
-import com.example.linkyourspecialistmobile.data.RegistrationRequestModel
 
 class LoginViewModel : ViewModel() {
     private var homeRepository: HomeRepository? = null
