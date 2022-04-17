@@ -96,7 +96,7 @@ export class MobileAccountController {
 
     async createPost(req, res, next) {
         try {
-            const message = {message: "successful"}
+            const message = { message: "successful" }
             const post = await PostModel.insert({
                 userID: req.body.userID,
                 category: req.body.category,
@@ -122,6 +122,35 @@ export class MobileAccountController {
             res
                 .status(200)
                 .json(posts)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async updateUser(req, res, next) {
+        try {
+            const id = req.headers['userid']
+            let userData = await MobileAccount.findOneAndUpdate(
+                { "_id": id },
+                {
+                    $set: {
+                        "username": req.body.username,
+                        "email": req.body.email,
+                        "name": req.body.name,
+                        "surname": req.body.surname,
+                        "birthday": req.body.birthday,
+                        "experience": req.body.experience,
+                        "phone": req.body.phone,
+                        "location": req.body.location
+                    }
+                },
+                {
+                    new: true
+                }
+            );
+            res
+                .status(200)
+                .json(userData)
         } catch (error) {
             next(error)
         }

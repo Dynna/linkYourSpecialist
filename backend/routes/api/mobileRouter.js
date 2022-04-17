@@ -28,3 +28,9 @@ router.get('/posts',
   (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.getPosts(req, res, next)
 )
+
+// this route need header with userid and authorization token
+router.post('/updateUser',
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => controller.updateUser(req, res, next)
+)
