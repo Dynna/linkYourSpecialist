@@ -1,4 +1,4 @@
-package com.example.linkyourspecialistmobile.ui.navigationfragments
+package com.example.linkyourspecialistmobile.ui.navigationfragments.posts
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import androidx.navigation.fragment.findNavController
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.data.HomeRepository
 import com.example.linkyourspecialistmobile.data.NewPostModel
@@ -46,12 +47,9 @@ class NewPostFragment : Fragment() {
         }
 
         createPostButton = binding.createPostButton
-        createPostButton.setOnClickListener{
+        createPostButton.setOnClickListener {
             createPost(spinner)
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.newPostFragment, PostsFragment())
-            transaction?.addToBackStack(null)
-            transaction?.commit()
+            findNavController().navigate(R.id.postsFragment)
         }
 
         return binding.root
@@ -70,7 +68,7 @@ class NewPostFragment : Fragment() {
         newPostModel.description = serviceDescription.text.toString()
         newPostModel.name = serviceName.text.toString()
         newPostModel.userID = userid
-        homeRepository?.createPost(accessToken,newPostModel)
+        homeRepository?.createPost(accessToken, newPostModel)
     }
 
 }

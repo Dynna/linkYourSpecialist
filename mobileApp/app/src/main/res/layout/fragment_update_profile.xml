@@ -3,12 +3,300 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.navigationfragments.user.UpdateProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.navigationfragments.user.UpdateProfileFragment"
+    android:background="@color/olive_background">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/olive_background"
+       android:layout_marginBottom="65dp">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:background="@color/olive_background">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Username"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/username"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green"                   />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Email"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/email"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Name"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/name"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Surname"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/surname"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Birthday"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/birthday"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Phone"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/phone"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Location"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/location"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:fontFamily="@font/cabin"
+                   android:text="Experience"
+                   android:textSize="16dp" />
+
+               <EditText
+                   android:id="@+id/experience"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="left"
+                   android:layout_marginTop="7dp"
+                   android:fontFamily="@font/cabin"
+                   android:inputType="textMultiLine"
+                   android:textSize="22dp"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/dark_green"
+                   android:ems="10"
+                   android:outlineAmbientShadowColor="@color/dark_green"
+                   android:textColor="@color/dark_green"
+                   android:textColorHint="@color/dark_green" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="30dp"
+               android:layout_marginBottom="30dp"
+               android:gravity="center_horizontal"
+               android:orientation="horizontal">
+
+               <Button
+                   android:id="@+id/createPostButton"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:backgroundTint="@color/dark_olive_button"
+                   android:fontFamily="@font/cabin"
+                   android:onClick="loginUser"
+                   android:text="Update"
+                   app:iconTint="@color/dark_olive_button" />
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

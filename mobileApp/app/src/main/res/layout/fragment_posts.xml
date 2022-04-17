@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.navigationfragments.PostsFragment"
+    tools:context=".ui.navigationfragments.posts.PostsFragment"
     android:id="@+id/postsFragment"
     android:background="@color/olive_background">
 
@@ -23,7 +22,6 @@
         android:layout_marginLeft="300dp"
         android:layout_marginTop="560dp"
         android:background="@null"
-        android:src="@drawable/add_circle_bottom_nav"
-        android:onClick="createNewPost"/>>
+        android:src="@drawable/add_circle_bottom_nav"/>
 
 </FrameLayout>

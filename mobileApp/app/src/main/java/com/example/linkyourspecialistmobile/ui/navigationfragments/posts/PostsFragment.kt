@@ -1,4 +1,4 @@
-package com.example.linkyourspecialistmobile.ui.navigationfragments
+package com.example.linkyourspecialistmobile.ui.navigationfragments.posts
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.databinding.FragmentPostsBinding
@@ -38,11 +39,8 @@ class PostsFragment : Fragment() {
         binding.postsRecyclerView.adapter = adapter
 
         addNewPostButton = binding.addNewPostButton
-        addNewPostButton.setOnClickListener{
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.postsFragment, NewPostFragment())
-            transaction?.addToBackStack(null)
-            transaction?.commit()
+        addNewPostButton.setOnClickListener {
+            findNavController().navigate(R.id.newPostFragment)
         }
 
         userSharedPreferences = activity?.getSharedPreferences("UserData", 0)!!
@@ -62,8 +60,5 @@ class PostsFragment : Fragment() {
             }
         )
         return binding.root
-    }
-    fun createNewPost(view: View){
-
     }
 }
