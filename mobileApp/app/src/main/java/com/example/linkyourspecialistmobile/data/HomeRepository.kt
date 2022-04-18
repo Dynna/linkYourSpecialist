@@ -71,7 +71,10 @@ class HomeRepository {
         return data
     }
 
-    fun getPosts(authorizationHeader: String?, userid: String?): LiveData<MutableList<PostModelResponse>?> {
+    fun getPosts(
+        authorizationHeader: String?,
+        userid: String?
+    ): LiveData<MutableList<PostModelResponse>?> {
 
         var posts = MutableLiveData<MutableList<PostModelResponse>>()
 
@@ -100,24 +103,57 @@ class HomeRepository {
         return posts
     }
 
-    fun createPost(authorizationHeader: String?,newPostModel: NewPostModel){
+    fun createPost(authorizationHeader: String?, newPostModel: NewPostModel) {
 
-        apiInterface?.createPost(authorizationHeader,newPostModel)?.enqueue(object : Callback<NewPostModel> {
-            override fun onFailure(call: Call<NewPostModel>, t: Throwable) {
-                Log.d("API_NEW_POST", "FAIL")
-            }
-
-            override fun onResponse(
-                call: Call<NewPostModel>,
-                response: Response<NewPostModel>
-            ) {
-                Log.d("RESPONSE_CODE", response.code().toString())
-                if (response.code() == 201) {
-                    Log.d("API_NEW_POST", "Post Created Successfully")
-                } else {
-                    Log.d("API_NEW_POST", "Post Not Created")
+        apiInterface?.createPost(authorizationHeader, newPostModel)
+            ?.enqueue(object : Callback<NewPostModel> {
+                override fun onFailure(call: Call<NewPostModel>, t: Throwable) {
+                    Log.d("API_NEW_POST", "FAIL")
                 }
-            }
-        })
+
+                override fun onResponse(
+                    call: Call<NewPostModel>,
+                    response: Response<NewPostModel>
+                ) {
+                    Log.d("RESPONSE_CODE", response.code().toString())
+                    if (response.code() == 201) {
+                        Log.d("API_NEW_POST", "Post Created Successfully")
+                    } else {
+                        Log.d("API_NEW_POST", "Post Not Created")
+                    }
+                }
+            })
+    }
+
+    fun updateProfile(
+        authorizationHeader: String?,
+        userid: String?,
+        updateProfileRequestModel: UpdateProfileRequestModel
+    ): LiveData<RegistrationResponseModel?> {
+        var data = MutableLiveData<RegistrationResponseModel?>()
+        apiInterface?.updateProfile(authorizationHeader, userid, updateProfileRequestModel)
+            ?.enqueue(object : Callback<RegistrationResponseModel> {
+                override fun onFailure(call: Call<RegistrationResponseModel>, t: Throwable) {
+                    data.value = null
+                    Log.d("UPDATE_PROFILE", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<RegistrationResponseModel>,
+                    response: Response<RegistrationResponseModel>
+                ) {
+                    val res = response.body()
+                    //Log.d("UPDATE_PROFILE_RESPONSE", res.toString())
+                    if (response.code() == 200 && res != null) {
+                        data.value = res!!
+                        //Log.d("DATA", data.value.toString())
+                        Log.d("API_UPDATE_PROFILE", "Successful")
+                    } else {
+                        data.value = null
+                        Log.d("API_UPDATE_PROFILE", "Error")
+                    }
+                }
+            })
+        return data
     }
 }

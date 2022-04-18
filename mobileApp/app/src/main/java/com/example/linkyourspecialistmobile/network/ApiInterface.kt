@@ -22,4 +22,10 @@ interface ApiInterface {
         @Header("authorization") authorizationHeader: String?,
         @Body newPostModel: NewPostModel
     ): Call<NewPostModel>
+
+    @POST("/api/mobileUsers/updateUser")
+    fun updateProfile(@Header("authorization") authorizationHeader: String?,
+                      @Header("userid") userid: String?,
+                      @Body updateProfileRequestModel: UpdateProfileRequestModel
+    ): Call<RegistrationResponseModel>
 }
