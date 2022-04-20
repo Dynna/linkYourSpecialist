@@ -156,4 +156,61 @@ class HomeRepository {
             })
         return data
     }
+
+    fun createAvailabilityItem(
+        authorizationHeader: String?,
+        availabilityItemModel: AvailabilityItemModel
+    ) {
+
+        apiInterface?.createAvailabilityItem(authorizationHeader, availabilityItemModel)
+            ?.enqueue(object : Callback<AvailabilityItemModel> {
+                override fun onFailure(call: Call<AvailabilityItemModel>, t: Throwable) {
+                    Log.d("API_NEW_AVAILABILITY", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<AvailabilityItemModel>,
+                    response: Response<AvailabilityItemModel>
+                ) {
+                    Log.d("RESPONSE_CODE", response.code().toString())
+                    if (response.code() == 201) {
+                        Log.d("API_NEW_AVAILABILITY", "Availability Item Created Successfully")
+                    } else {
+                        Log.d("API_NEW_AVAILABILITY", "Availability Item Not Created")
+                    }
+                }
+            })
+    }
+
+    fun getAvailabilityItems(
+        authorizationHeader: String?,
+        userid: String?
+    ): LiveData<MutableList<AvailabilityItemModel>?> {
+
+        var items = MutableLiveData<MutableList<AvailabilityItemModel>>()
+
+        apiInterface?.getAvailabilityItems(authorizationHeader, userid)
+            ?.enqueue(object : Callback<MutableList<AvailabilityItemModel>> {
+                override fun onFailure(call: Call<MutableList<AvailabilityItemModel>>, t: Throwable) {
+                    items.value = mutableListOf()
+                    Log.d("GET_AVAILABILITY", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<MutableList<AvailabilityItemModel>>,
+                    response: Response<MutableList<AvailabilityItemModel>>
+                ) {
+                    val res: MutableList<AvailabilityItemModel>? = response.body()
+                    //Log.d("POSTS", res.toString())
+                    if (response.code() == 200 && res != null) {
+                        items.value = res!!
+                        Log.d("GET_AVAILABILITY", "Successful")
+                    } else {
+                        items.value = mutableListOf()
+                        Log.d("GET_AVAILABILITY", "Error")
+                    }
+                }
+            })
+        return items
+    }
 }

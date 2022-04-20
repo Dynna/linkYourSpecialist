@@ -25,9 +25,9 @@ export class JWTService {
       else {
         //console.log("1111")
         const secretKey = process.env.TOKEN_SECRET_KEY
-        console.log(authorization[1])
+        //console.log(authorization[1])
         const payload = jwt.verify(authorization[1], secretKey)
-        console.log(payload)
+        // console.log(payload)
         req.account = {
           userID: payload.sub,
           username: payload.name,

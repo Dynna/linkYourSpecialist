@@ -28,4 +28,17 @@ interface ApiInterface {
                       @Header("userid") userid: String?,
                       @Body updateProfileRequestModel: UpdateProfileRequestModel
     ): Call<RegistrationResponseModel>
+
+    //availability requests
+    @POST("/api/mobileUsers/availability/newItem")
+    fun createAvailabilityItem(
+        @Header("authorization") authorizationHeader: String?,
+        @Body availabilityItemModel: AvailabilityItemModel
+    ): Call<AvailabilityItemModel>
+
+    @GET("/api/mobileUsers/availability/getItem")
+    fun getAvailabilityItems(
+        @Header("authorization") authorizationHeader: String?,
+        @Header("userid") userid: String?
+    ): Call<MutableList<AvailabilityItemModel>>
 }

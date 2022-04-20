@@ -4,6 +4,7 @@ import createError from 'http-errors'
 import { MobileAccount } from '../models/mobileUserModel.js'
 import { PostModel } from '../models/servicePostModel.js'
 import dotenv from 'dotenv'
+import { AvailabilityModel } from '../models/specialistAvailabilityModel.js'
 dotenv.config();
 export class MobileAccountController {
 
@@ -96,13 +97,12 @@ export class MobileAccountController {
 
     async createPost(req, res, next) {
         try {
-            const message = { message: "successful" }
+            const message = { message: "specialist's post inserted successful" }
             const post = await PostModel.insert({
                 userID: req.body.userID,
                 category: req.body.category,
                 name: req.body.name,
-                description: req.body.description,
-                serveAtHome: req.body.serveAtHome
+                description: req.body.description
             })
             res
                 .status(201)
@@ -151,6 +151,41 @@ export class MobileAccountController {
             res
                 .status(200)
                 .json(userData)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async insertAvailability(req, res, next) {
+        try {
+            //console.log("111111")
+            const message = { message: "availability item inserted successfully" }
+            const availabilityItem = await AvailabilityModel.insert({
+                userID: req.body.userID,
+                date: req.body.date,
+                startTime: req.body.startTime,
+                endTime: req.body.endTime,
+                description: req.body.description
+            })
+            ///console.log(availabilityItem)
+            res
+                .status(201)
+                .json(message)
+        } catch (error) {
+            next(error)
+            res.json(error)
+        }
+    }
+
+    async getAvailabilityItem(req, res, next) {
+        try {
+            const id = req.headers['userid']
+            const items = await AvailabilityModel.find({
+                userID: id
+            })
+            res
+                .status(200)
+                .json(items)
         } catch (error) {
             next(error)
         }

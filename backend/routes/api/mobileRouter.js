@@ -34,3 +34,14 @@ router.post('/updateUser',
   (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.updateUser(req, res, next)
 )
+
+//availability data
+router.post('/availability/newItem',
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => controller.insertAvailability(req, res, next)
+)
+
+router.get('/availability/getItem',
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => controller.getAvailabilityItem(req, res, next)
+)

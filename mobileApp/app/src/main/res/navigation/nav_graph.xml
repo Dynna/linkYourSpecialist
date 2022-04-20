@@ -30,4 +30,9 @@
         android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.user.UpdateProfileFragment"
         android:label="fragment_update_profile"
         tools:layout="@layout/fragment_update_profile" />
+    <fragment
+        android:id="@+id/worksAndCertificationsFragment"
+        android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.WorksAndCertificationsFragment"
+        android:label="fragment_works_and_certifications"
+        tools:layout="@layout/fragment_works_and_certifications" />
 </navigation>
