@@ -32,8 +32,8 @@ class AvailabilityRecyclerViewAdapter :
                     description.text = item.description + ":"
                 }
                 date.text = "Date (yyyy/mm/dd): " + dateFormat[0]
-                startTime.text = "Start Time (hh:mm): " + item.startTime
-                endTime.text = "End Time (hh:mm): " + item.endTime
+                startTime.text = "Start Time: " + item.startTime
+                endTime.text = "End Time: " + item.endTime
             }
         }
     }

@@ -55,7 +55,7 @@ class NewPostFragment : Fragment() {
         return binding.root
     }
 
-    fun createPost(spinner: Spinner) {
+    private fun createPost(spinner: Spinner) {
         val serviceName: EditText = binding.serviceName
         val serviceCategory: String = spinner.selectedItem.toString()
         val serviceDescription: EditText = binding.serviceDescription

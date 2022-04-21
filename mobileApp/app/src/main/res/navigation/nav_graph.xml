@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_posts" />
     <fragment
         android:id="@+id/availabilityFragment"
-        android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.AvailabilityFragment"
+        android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.availability.AvailabilityFragment"
         android:label="fragment_availability"
         tools:layout="@layout/fragment_availability" />
     <fragment
@@ -35,4 +35,9 @@
         android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.WorksAndCertificationsFragment"
         android:label="fragment_works_and_certifications"
         tools:layout="@layout/fragment_works_and_certifications" />
+    <fragment
+        android:id="@+id/newAvailabilityItemFragment"
+        android:name="com.example.linkyourspecialistmobile.ui.navigationfragments.availability.NewAvailabilityItemFragment"
+        android:label="fragment_new_availability_item"
+        tools:layout="@layout/fragment_new_availability_item" />
 </navigation>

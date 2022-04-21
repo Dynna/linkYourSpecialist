@@ -1,4 +1,4 @@
-package com.example.linkyourspecialistmobile.ui.navigationfragments
+package com.example.linkyourspecialistmobile.ui.navigationfragments.availability
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -6,16 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.databinding.FragmentAvailabilityBinding
-import com.example.linkyourspecialistmobile.databinding.FragmentPostsBinding
 import com.example.linkyourspecialistmobile.helpers.AvailabilityRecyclerViewAdapter
-import com.example.linkyourspecialistmobile.helpers.PostsRecyclerViewAdapter
 import com.example.linkyourspecialistmobile.viewmodel.AvailabilityViewModel
-import com.example.linkyourspecialistmobile.viewmodel.PostsViewModel
 
 class AvailabilityFragment : Fragment() {
 
@@ -23,6 +22,7 @@ class AvailabilityFragment : Fragment() {
     private lateinit var viewModel: AvailabilityViewModel
     private lateinit var adapter: AvailabilityRecyclerViewAdapter
     private lateinit var binding: FragmentAvailabilityBinding
+    private lateinit var addItemButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +56,11 @@ class AvailabilityFragment : Fragment() {
                 }
             }
         )
+
+        addItemButton = binding.addNewAvailabilityButton
+        addItemButton.setOnClickListener {
+            findNavController().navigate(R.id.newAvailabilityItemFragment)
+        }
 
         return binding.root
     }
