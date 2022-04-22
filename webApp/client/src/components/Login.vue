@@ -1,30 +1,25 @@
 <template>
   <v-layout column>
-    <v-flex md4 xs4 offset-xs3 style="width: 50%; margin-top: 10px; align: center">
-      <div class="white elevation-2">
-        <v-app-bar flat dense class="cyan" dark>
-          <v-toolbar-title>Login</v-toolbar-title>
-        </v-app-bar>
-
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <v-text-field
-            label="Email"
-            v-model="email"
-          ></v-text-field>
-          <br>
-          <v-text-field
-            label="Password"
-            type="password"
-            v-model="password"
-          ></v-text-field>
-          <br>
-          <v-btn
-            class="cyan"
-            @click="login">
-            Login
-          </v-btn>
-        </div>
-      </div>
+    <v-flex xs6 offset-xs3>
+      <panel title="Login">
+        <v-text-field
+          label="Email"
+          v-model="email"
+        ></v-text-field>
+        <v-text-field
+          label="Password"
+          type="password"
+          v-model="password"
+        ></v-text-field>
+        <div class="danger-alert" v-html="error" />
+        <br>
+        <v-btn
+          dark
+          class="green"
+          @click="login">
+          Login
+        </v-btn>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
@@ -37,7 +32,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
@@ -47,8 +43,9 @@ export default {
           email: this.email,
           password: this.password
         })
-        // this.$store.dispatch('setToken', response.data.token)
-        // this.$store.dispatch('setUser', response.data.user)
+        console.log("here=",response.data.access_token)
+        this.$store.dispatch('setToken', response.data.access_token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -60,4 +57,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+.error {
+  color: red;
+}
 </style>

@@ -1,18 +1,81 @@
 <template>
-<div class="nav">
-  <a href="#"><router-link to="/">Link Your Specialist</router-link></a>
-  <a href="#">Browse</a>
-  <a href="#" style="text-align: right;"><router-link to="register">Sign Up</router-link></a>
-  <a href="#" style="text-align: right;"><router-link to="login">Login</router-link></a>
-</div>
-<!-- <v-toolbar><v-toolbar-title>HI</v-toolbar-title></v-toolbar> -->
+  <v-toolbar fixed class="green" dark>
+    <v-toolbar-title class="mr-4">
+      <router-link 
+        class="home"
+        tag="span"
+        :to="{
+          name: '/'
+        }">
+        LinkYourSpecialist
+      </router-link>
+    </v-toolbar-title>
+
+    <v-toolbar-items>
+      <v-btn 
+        flat 
+        dark
+        :to="{
+          name: ''
+        }">
+        Browse
+      </v-btn>
+    </v-toolbar-items>
+
+    <v-spacer></v-spacer>
+
+    <v-toolbar-items>
+      <v-btn 
+        v-if="!$store.state.isUserLoggedIn"
+        flat 
+        dark
+        :to="{
+          name: 'login'
+        }">
+        Login
+      </v-btn>
+      
+      <v-btn 
+        v-if="!$store.state.isUserLoggedIn"
+        flat 
+        dark
+        :to="{
+          name: 'register'
+        }">
+        Sign Up
+      </v-btn>
+      
+      <v-btn 
+        v-if="$store.state.isUserLoggedIn"
+        flat 
+        dark
+        @click="logout">
+        Log Out
+      </v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
 export default {
-  name: 'PageHeader'
+  methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      // this.$router.push({
+      //   name: 'songs'
+      // })
+    }
+  }
 }
 </script>
 
 <style scoped>
+.home {
+  cursor: pointer;
+}
+
+.home:hover {
+  color: #C8E6C9;
+}
 </style>
