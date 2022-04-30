@@ -22,7 +22,8 @@
                         :to="{
                             name: 'service',
                             params: {
-                                serviceId: service._id
+                                serviceId: service._id,
+                                specialistId: service.userID
                             }
                         }">
                         View
@@ -57,6 +58,7 @@ export default {
     async mounted () {
         this.services = (await ServicePostsService.index()).data
         console.log('services',this.services)
+        
     }
 }
 </script>

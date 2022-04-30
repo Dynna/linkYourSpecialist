@@ -31,9 +31,14 @@ export default new Router({
       component: Services
     },
     {
-      path: '/services/:serviceId',
+      path: '/services/:serviceId&:specialistId',
       name: 'service',
       component: ViewService
-    }
+    },
+    // {
+    //   path: '/services/:serviceId&:specialistId',
+    //   name: 'service',
+    //   component: ViewService
+    // }
   ]
 })

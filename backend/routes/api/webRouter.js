@@ -15,6 +15,8 @@ router.post('/login', (req, res, next) => controller.login(req, res, next))
 router.get('/welcome', (req, res) => res.json({ message: 'Welcome to web app' }))
 
 router.get('/services', serviceController.index)
+router.get('/services/:serviceId&:specialistId', serviceController.show)
+//router.get('/services/info/:specialistId', serviceController.getContacts)
 // DELETE
 router.delete('/user',
   (req, res, next) => jwtService.authenticateJWT(req, res, next),
