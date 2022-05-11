@@ -1,5 +1,5 @@
 <template>
-  <v-layout column>
+  <v-layout column class="items-bg">
     <v-flex xs6 offset-xs3>
       <panel title="Login">
         <v-text-field
@@ -15,7 +15,7 @@
         <br>
         <v-btn
           dark
-          class="green"
+          class="green darken-3"
           @click="login">
           Login
         </v-btn>
@@ -27,7 +27,6 @@
 // binding to controller
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 
 export default {
   name: 'HelloWorld',
@@ -48,13 +47,11 @@ export default {
         console.log("here=",response.data.access_token)
         this.$store.dispatch('setToken', response.data.access_token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push('/') 
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>

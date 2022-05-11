@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import Services from '@/components/Services'
+import Services from '@/components/Services/Index'
 import ViewService from '@/components/ViewService'
 
 Vue.use(Router)

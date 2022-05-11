@@ -1,11 +1,11 @@
 <template>
-  <v-toolbar fixed class="green" dark>
+  <v-toolbar fixed class="green darken-3" dark>
     <v-toolbar-title class="mr-4">
       <router-link 
         class="home"
         tag="span"
         :to="{
-          name: '/'
+          name: 'HelloWorld'
         }">
         LinkYourSpecialist
       </router-link>

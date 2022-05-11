@@ -1,8 +1,12 @@
 import Api from '@/services/Api'
 
 export default {
-  index () {
-    return Api().get('services')
+  index (search) {
+    return Api().get('services', {
+      params: {
+        search: search
+      }
+    })
   },
   //to add specialist ID somehow
   show (serviceId, specialistId) {

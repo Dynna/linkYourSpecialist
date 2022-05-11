@@ -4,7 +4,7 @@
     <v-app>
       <page-header />
       
-      <main>
+      <main class="main-app">
         <v-container fluid>
           <router-view></router-view>
         </v-container>
@@ -31,10 +31,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 .danger-alert {
   color: red;
 }
+
+.main-app {
+  /* background-image: url('home.png'); */
+  background-color: rgba(195, 202, 195, 0.4);
+  backdrop-filter: blur(5px);
+}
+
 </style>

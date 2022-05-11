@@ -1,5 +1,5 @@
 <template>
-  <v-layout column>
+  <v-layout column class="items-bg">
     <v-flex xs6 offset-xs3>
       <panel title="Register">
         <form 
@@ -33,7 +33,7 @@
         <br>
         <v-btn
           dark
-          class="green"
+          class="green darken-3"
           @click="register">
           Register
         </v-btn>
@@ -45,7 +45,6 @@
 // binding to controller
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 export default {
   name: 'HelloWorld',
   data () {
@@ -70,15 +69,12 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.access_token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push('/')
       } catch (error) {
         this.error = error.response.data.error
       }
     }
   },
-  components:{
-    Panel
-  }
-
 }
 </script>
 

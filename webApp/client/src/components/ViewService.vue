@@ -1,5 +1,5 @@
 <template>
-<v-layout>
+<v-layout class="items-bg">
     <v-flex xs4>
         <panel title="Service details">
             <v-layout>
@@ -70,7 +70,6 @@
 
 <script>
 import ServicePostsService from '@/services/ServicePostsService'
-import Panel from '@/components/Panel'
 import moment from 'moment'
 
 export default {
@@ -87,9 +86,6 @@ export default {
         this.availabilityItems = this.servicepost.availability
         console.log('ALL SERVICES',this.servicepost)
         console.log('ONLY AVAILABILITY',this.availabilityItems)
-    },
-    components: {
-        Panel
     },
     methods: {
         format_date(value) {

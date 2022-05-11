@@ -7,9 +7,28 @@ dotenv.config();
 export class WebServiceController {
     async index (req, res, next) {
         try {
-            const posts = await PostModel.find({
-                where: {}
-            })
+            let posts = null;
+            const search = req.query.search
+            if (search) {
+                posts = await PostModel.find({
+                    $or: [ {name: {$regex: search, $options: 'i'}},
+                           {category: {$regex: search, $options: 'i'}}
+                    ]
+                    // where: {
+                    //     $or: [
+                    //         'name', 'category'
+                    //     ].map(key = ({
+                    //         [key]: {
+                    //             $like: `%${search}%`
+                    //         }
+                    //     }))
+                    // }
+                })
+            } else {
+                posts = await PostModel.find({
+                    where: {}
+                })
+            }
             res
                 .status(200)
                 .json(posts)
