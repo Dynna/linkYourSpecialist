@@ -32,7 +32,7 @@
 
                     <v-flex xs6>
                         <div class="service-description">
-                            {{service.description}}
+                            {{service.description | truncate(130, '...')}}
                         </div>
                     </v-flex>
                 </v-layout>
@@ -59,6 +59,15 @@ export default {
         this.services = (await ServicePostsService.index()).data
         console.log('services',this.services)
         
+    },
+    filters: {
+        truncate: function (text, length, suffix) {
+            if (text.length > length) {
+                return text.substring(0, length) + suffix;
+            } else {
+                return text;
+            }
+        },
     }
 }
 </script>
@@ -66,8 +75,9 @@ export default {
 <style scoped>
 .service {
     padding: 20px;
-    height: 330px;
+    height: 210px;
     overflow: hidden;
+    border-bottom: 4px solid #b5e7a0;
 }
 
 .service-name {
@@ -80,6 +90,7 @@ export default {
 
 .service-description {
     font-size: 18px;
+    margin-bottom: 5px;
 }
 
 </style>

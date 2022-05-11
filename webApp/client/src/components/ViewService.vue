@@ -3,26 +3,46 @@
     <v-flex xs4>
         <panel title="Service details">
             <v-layout>
-                <v-flex xs6>
+                <v-flex xs12>
                     <div class="service-name">
                         "{{servicepost.post.name}}"
                     </div>
                     <div class="service-category">
                         category: {{servicepost.post.category}}
                     </div>   
-                </v-flex>
-
-                <v-flex xs6>
                     <div class="service-description">
                         {{servicepost.post.description}}
                     </div>
                 </v-flex>
+
+                <!-- <v-flex xs6>
+                    <div class="service-description">
+                        {{servicepost.post.description}}
+                    </div>
+                </v-flex> -->
             </v-layout>
         </panel>   
     </v-flex>
     <v-flex xs4>
         <panel title="Availability/ time slots to book the service" class="ml-2">
-
+            <div 
+            class="availability-items" 
+            v-for="availabilityItem in availabilityItems" 
+            :key="availabilityItem._id">
+                <v-layout>
+                    <v-flex xs12>
+                        <div class="">
+                            Available: {{format_date(availabilityItem.date)}} 
+                        </div>
+                        <div class="">
+                            Description: {{availabilityItem.description}}
+                        </div>
+                        <div class="">
+                            Time: {{availabilityItem.startTime}} - {{availabilityItem.endTime}}
+                        </div>  
+                    </v-flex>
+                </v-layout>
+            </div>
         </panel>
     </v-flex> 
     <v-flex xs4>
@@ -51,21 +71,32 @@
 <script>
 import ServicePostsService from '@/services/ServicePostsService'
 import Panel from '@/components/Panel'
+import moment from 'moment'
 
 export default {
     data () {
         return {
-            servicepost: null
+            servicepost: null,
+            availabilityItems: null
         }
     },
     async mounted () {
         const serviceId = this.$store.state.route.params.serviceId
         const specialistId = this.$store.state.route.params.specialistId
         this.servicepost = (await ServicePostsService.show(serviceId, specialistId)).data
-        console.log('HETEEE',this.servicepost)
+        this.availabilityItems = this.servicepost.availability
+        console.log('ALL SERVICES',this.servicepost)
+        console.log('ONLY AVAILABILITY',this.availabilityItems)
     },
-    components:{
+    components: {
         Panel
+    },
+    methods: {
+        format_date(value) {
+         if (value) {
+           return moment(String(value)).format('MMMM Do, YYYY')
+          }
+      },
     }
 }
 </script>
@@ -91,6 +122,13 @@ export default {
 
 .contacts {
     font-size: 21px;
+}
+
+.availability-items {
+    padding-bottom: 6px;
+    padding-top: 6px;
+    font-size: 19px;
+    border-bottom: 3px solid #b5e7a0;
 }
 
 </style>
