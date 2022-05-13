@@ -3,6 +3,7 @@ package com.example.linkyourspecialistmobile.helpers
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linkyourspecialistmobile.data.AvailabilityItemModel
@@ -21,12 +22,13 @@ class AvailabilityRecyclerViewAdapter :
         private val date: TextView = binding.availabilityDate
         private val startTime: TextView = binding.availabilityStartTime
         private val endTime: TextView = binding.availabilityEndTime
+        private val deleteButton: ImageButton = binding.deleteButton
 
         @SuppressLint("SetTextI18n")
         fun bind(item: AvailabilityItemModel) {
             var dateFormat = item.date.toString().split("T")
             itemView.apply {
-                if (item.description == "" || item.description == null){
+                if (item.description == "" || item.description == null) {
                     description.text = "Available on:"
                 } else {
                     description.text = item.description + ":"
@@ -34,10 +36,12 @@ class AvailabilityRecyclerViewAdapter :
                 date.text = "Date (yyyy/mm/dd): " + dateFormat[0]
                 startTime.text = "Start Time: " + item.startTime
                 endTime.text = "End Time: " + item.endTime
+                deleteButton.setOnClickListener {
+
+                }
             }
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =

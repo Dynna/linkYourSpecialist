@@ -59,6 +59,7 @@ class NewPostFragment : Fragment() {
         val serviceName: EditText = binding.serviceName
         val serviceCategory: String = spinner.selectedItem.toString()
         val serviceDescription: EditText = binding.serviceDescription
+        val location: EditText = binding.location
         val userid: String =
             userSharedPreferences.getString("id", "not found").toString()
         val accessToken: String = "Bearer " +
@@ -68,6 +69,7 @@ class NewPostFragment : Fragment() {
         newPostModel.description = serviceDescription.text.toString()
         newPostModel.name = serviceName.text.toString()
         newPostModel.userID = userid
+        newPostModel.location = location.text.toString()
         homeRepository?.createPost(accessToken, newPostModel)
     }
 

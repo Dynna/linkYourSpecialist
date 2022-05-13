@@ -18,5 +18,9 @@ data class NewPostModel(
 
     @SerializedName("description")
     @Expose
-    var description: String? = ""
+    var description: String? = "",
+
+    @SerializedName("location")
+    @Expose
+    var location: String? = ""
 )

@@ -33,7 +33,6 @@ export class MobileAccountController {
                 err = createError(401)
                 err.innerException = error
             }
-
             next(err)
         }
     }
@@ -102,7 +101,8 @@ export class MobileAccountController {
                 userID: req.body.userID,
                 category: req.body.category,
                 name: req.body.name,
-                description: req.body.description
+                description: req.body.description,
+                location: req.body.location
             })
             res
                 .status(201)

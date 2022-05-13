@@ -18,12 +18,14 @@ class PostsRecyclerViewAdapter : RecyclerView.Adapter<PostsRecyclerViewAdapter.M
         private val postName: TextView = binding.postName
         private val serviceCategory: TextView = binding.serviceCategory
         private val serviceDescription: TextView = binding.serviceDescription
+        private val location: TextView = binding.location
 
         fun bind(item: PostModelResponse) {
             itemView.apply {
                 postName.text = item.name
-                serviceCategory.text = item.category
+                serviceCategory.text = "Category: " + item.category
                 serviceDescription.text = item.description
+                location.text = "Location: " + item.location
             }
         }
     }

@@ -9,9 +9,10 @@
     android:foregroundTint="@color/dark_green"
     tools:context=".ui.navigationfragments.posts.NewPostFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="70dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -101,7 +102,38 @@
                     android:outlineAmbientShadowColor="@color/dark_green"
                     android:textColor="@color/dark_green"
                     android:textColorHint="@color/dark_green"
-                    android:text="my description"/>
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin"
+                    android:gravity=""
+                    android:text="Location"
+                    android:textSize="28dp" />
+
+                <EditText
+                    android:id="@+id/location"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/dark_green"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:outlineAmbientShadowColor="@color/dark_green"
+                    android:textColor="@color/dark_green"
+                    android:textColorHint="@color/dark_green"
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -124,6 +156,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

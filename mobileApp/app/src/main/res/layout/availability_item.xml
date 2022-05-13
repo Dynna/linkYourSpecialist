@@ -9,18 +9,33 @@
     android:background="@color/light_grey"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/availabilityDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/cabin"
-        android:text="Available on:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/availabilityDescription"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cabin"
+            android:text="Available on:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"/>
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete_icon"
+            android:background="@null"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/availabilityDate"
