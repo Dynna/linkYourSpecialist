@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.data.HomeRepository
@@ -51,7 +48,6 @@ class NewPostFragment : Fragment() {
             createPost(spinner)
             findNavController().navigate(R.id.postsFragment)
         }
-
         return binding.root
     }
 
@@ -72,5 +68,4 @@ class NewPostFragment : Fragment() {
         newPostModel.location = location.text.toString()
         homeRepository?.createPost(accessToken, newPostModel)
     }
-
 }

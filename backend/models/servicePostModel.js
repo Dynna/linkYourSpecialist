@@ -21,6 +21,10 @@ const ServicePostModel = new mongoose.Schema({
     type: String,
     required: false
   },
+  images: {
+    type: [String],
+    required: false
+  }
 }, {
   versionKey: false,
   virtuals: true

@@ -41,4 +41,10 @@ interface ApiInterface {
         @Header("authorization") authorizationHeader: String?,
         @Header("userid") userid: String?
     ): Call<MutableList<AvailabilityItemModel>>
+
+    @GET("/api/mobileUsers/bookRequests")
+    fun getBookRequests(
+        @Header("authorization") authorizationHeader: String?,
+        @Header("userid") userid: String?
+    ): Call<MutableList<BookRequestModel>>
 }

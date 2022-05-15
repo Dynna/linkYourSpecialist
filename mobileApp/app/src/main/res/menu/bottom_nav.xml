@@ -12,9 +12,9 @@
         android:title="Availability" />
 
     <item
-        android:id="@+id/worksAndCertificationsFragment"
-        android:icon="@drawable/image_works"
-        android:title="Certifications"
+        android:id="@+id/requestsFragment"
+        android:icon="@drawable/request_image"
+        android:title="Requests"
         />
 
     <item

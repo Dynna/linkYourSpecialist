@@ -5,6 +5,7 @@ import { MobileAccount } from '../models/mobileUserModel.js'
 import { PostModel } from '../models/servicePostModel.js'
 import dotenv from 'dotenv'
 import { AvailabilityModel } from '../models/specialistAvailabilityModel.js'
+import { BookRequestModel } from '../models/requestModel.js'
 dotenv.config();
 export class MobileAccountController {
 
@@ -102,7 +103,8 @@ export class MobileAccountController {
                 category: req.body.category,
                 name: req.body.name,
                 description: req.body.description,
-                location: req.body.location
+                location: req.body.location,
+                images: req.body.images
             })
             res
                 .status(201)
@@ -182,6 +184,43 @@ export class MobileAccountController {
             const id = req.headers['userid']
             const items = await AvailabilityModel.find({
                 userID: id
+            })
+            res
+                .status(200)
+                .json(items)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async insertBookRequest(req, res, next) {
+        try {
+            //console.log("111111")
+            const message = { message: "book request item inserted successfully" }
+            const request = await BookRequestModel.insert({
+                specialistID: req.body.specialistID,
+                clientID: req.body.clientID,
+                clientEmail: req.body.clientEmail,
+                availabilityItemID: req.body.availabilityItemID,
+                date: req.body.date,
+                startTime: req.body.startTime,
+                endTime: req.body.endTime
+            })
+            ///console.log(request)
+            res
+                .status(201)
+                .json(message)
+        } catch (error) {
+            next(error)
+            res.json(error)
+        }
+    }
+
+    async getBookRequest(req, res, next) {
+        try {
+            const id = req.headers['userid']
+            const items = await BookRequestModel.find({
+                specialistID: id
             })
             res
                 .status(200)

@@ -5,7 +5,14 @@
     android:layout_height="match_parent"
     android:id="@+id/worksAndCertificationsFragment"
     android:background="@color/olive_background"
-    tools:context=".ui.navigationfragments.WorksAndCertificationsFragment">
+    tools:context=".ui.navigationfragments.RequestsFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/requestsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="65dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

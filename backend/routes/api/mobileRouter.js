@@ -45,3 +45,12 @@ router.get('/availability/getItem',
   (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.getAvailabilityItem(req, res, next)
 )
+
+router.post('/newRequest',
+  (req, res, next) => controller.insertBookRequest(req, res, next)
+)
+
+router.get('/bookRequests',
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => controller.getBookRequest(req, res, next)
+)

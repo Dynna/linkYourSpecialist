@@ -213,4 +213,36 @@ class HomeRepository {
             })
         return items
     }
+
+    fun getBookRequests(
+        authorizationHeader: String?,
+        userid: String?
+    ): LiveData<MutableList<BookRequestModel>?> {
+
+        var items = MutableLiveData<MutableList<BookRequestModel>>()
+
+        apiInterface?.getBookRequests(authorizationHeader, userid)
+            ?.enqueue(object : Callback<MutableList<BookRequestModel>> {
+                override fun onFailure(call: Call<MutableList<BookRequestModel>>, t: Throwable) {
+                    items.value = mutableListOf()
+                    Log.d("GET_REQUESTS", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<MutableList<BookRequestModel>>,
+                    response: Response<MutableList<BookRequestModel>>
+                ) {
+                    val res: MutableList<BookRequestModel>? = response.body()
+                    //Log.d("POSTS", res.toString())
+                    if (response.code() == 200 && res != null) {
+                        items.value = res!!
+                        Log.d("GET_REQUESTS", "Successful")
+                    } else {
+                        items.value = mutableListOf()
+                        Log.d("GET_REQUESTS", "Error")
+                    }
+                }
+            })
+        return items
+    }
 }
