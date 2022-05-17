@@ -191,7 +191,10 @@ class HomeRepository {
 
         apiInterface?.getAvailabilityItems(authorizationHeader, userid)
             ?.enqueue(object : Callback<MutableList<AvailabilityItemModel>> {
-                override fun onFailure(call: Call<MutableList<AvailabilityItemModel>>, t: Throwable) {
+                override fun onFailure(
+                    call: Call<MutableList<AvailabilityItemModel>>,
+                    t: Throwable
+                ) {
                     items.value = mutableListOf()
                     Log.d("GET_AVAILABILITY", "FAIL")
                 }
@@ -244,5 +247,55 @@ class HomeRepository {
                 }
             })
         return items
+    }
+
+    fun approveBookRequest(
+        authorizationHeader: String?,
+        bookResponseModel: BookResponseModel
+    ) {
+
+        apiInterface?.approveBookRequest(authorizationHeader, bookResponseModel)
+            ?.enqueue(object : Callback<BookResponseModel> {
+                override fun onFailure(call: Call<BookResponseModel>, t: Throwable) {
+                    Log.d("BOOK_REQUEST", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<BookResponseModel>,
+                    response: Response<BookResponseModel>
+                ) {
+                    Log.d("RESPONSE_CODE", response.code().toString())
+                    if (response.code() == 200) {
+                        Log.d("BOOK_REQUEST", "successfully approved")
+                    } else {
+                        Log.d("BOOK_REQUEST", "not approved some error appear")
+                    }
+                }
+            })
+    }
+
+    fun declineBookRequest(
+        authorizationHeader: String?,
+        bookResponseModel: BookResponseModel
+    ) {
+
+        apiInterface?.declineBookRequest(authorizationHeader, bookResponseModel)
+            ?.enqueue(object : Callback<BookResponseModel> {
+                override fun onFailure(call: Call<BookResponseModel>, t: Throwable) {
+                    Log.d("BOOK_REQUEST", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<BookResponseModel>,
+                    response: Response<BookResponseModel>
+                ) {
+                    Log.d("RESPONSE_CODE", response.code().toString())
+                    if (response.code() == 200) {
+                        Log.d("BOOK_REQUEST", "successfully declined")
+                    } else {
+                        Log.d("BOOK_REQUEST", "not declined some error appear")
+                    }
+                }
+            })
     }
 }

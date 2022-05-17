@@ -47,4 +47,16 @@ interface ApiInterface {
         @Header("authorization") authorizationHeader: String?,
         @Header("userid") userid: String?
     ): Call<MutableList<BookRequestModel>>
+
+    @POST("/api/mobileUsers/acceptBookRequest")
+    fun approveBookRequest(
+        @Header("authorization") authorizationHeader: String?,
+        @Body bookResponseModel: BookResponseModel
+    ): Call<BookResponseModel>
+
+    @POST("/api/mobileUsers/declineBookRequest")
+    fun declineBookRequest(
+        @Header("authorization") authorizationHeader: String?,
+        @Body bookResponseModel: BookResponseModel
+    ): Call<BookResponseModel>
 }

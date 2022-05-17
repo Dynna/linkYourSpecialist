@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.databinding.FragmentAvailabilityBinding
@@ -47,15 +50,13 @@ class RequestsFragment : Fragment() {
         viewModel.bookRequests?.observe(
             this, Observer {
                 if (it != null) {
-                    adapter.setData(it)
+                    adapter.setData(it, activity!!)
                 } else {
                     Toast.makeText(context, "can't get book requests", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
         )
-
         return binding.root
     }
-
 }

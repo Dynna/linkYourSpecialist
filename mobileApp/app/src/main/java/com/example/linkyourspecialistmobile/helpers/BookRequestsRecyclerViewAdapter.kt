@@ -1,21 +1,30 @@
 package com.example.linkyourspecialistmobile.helpers
 
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linkyourspecialistmobile.data.AvailabilityItemModel
 import com.example.linkyourspecialistmobile.data.BookRequestModel
+import com.example.linkyourspecialistmobile.data.BookResponseModel
+import com.example.linkyourspecialistmobile.data.HomeRepository
 import com.example.linkyourspecialistmobile.databinding.RequestItemBinding
+import com.example.linkyourspecialistmobile.viewmodel.BookRequestViewModel
 
 class BookRequestsRecyclerViewAdapter :
     RecyclerView.Adapter<BookRequestsRecyclerViewAdapter.MyViewHolder>() {
-
     private var requestsList: MutableList<BookRequestModel>? = mutableListOf()
-
-
+    val homeRepository = HomeRepository()
+    private lateinit var userSharedPreferences: SharedPreferences
+    private lateinit var activity: FragmentActivity
+    var viewModel = BookRequestViewModel()
     inner class MyViewHolder(binding: RequestItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -27,18 +36,30 @@ class BookRequestsRecyclerViewAdapter :
         private val rejectButton: Button = binding.rejectButton
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: BookRequestModel) {
+        fun bind(item: BookRequestModel, activity: FragmentActivity) {
             var dateFormat = item.date.toString().split("T")
+            var bookResponseModel = BookResponseModel(
+                item.specialistID,
+                item.clientID,
+                item.clientEmail,
+                item.availabilityItemID
+            )
+            userSharedPreferences = activity?.getSharedPreferences("UserData", 0)!!
+            val accessToken: String = "Bearer " +
+                    userSharedPreferences.getString("access_token", "not logged in").toString()
+
             itemView.apply {
                 request.text = request.text.toString() + " " + item.clientEmail
                 date.text = "Date (yyyy/mm/dd): " + dateFormat[0]
                 startTime.text = "Start Time: " + item.startTime
                 endTime.text = "End Time: " + item.endTime
                 approveButton.setOnClickListener {
-
+                    //Log.d("REQUEST", "APPROVE")
+                    homeRepository.approveBookRequest(accessToken, bookResponseModel)
                 }
                 rejectButton.setOnClickListener {
-
+                    //Log.d("REQUEST", "Decline")
+                    homeRepository.declineBookRequest(accessToken, bookResponseModel)
                 }
             }
         }
@@ -55,7 +76,13 @@ class BookRequestsRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(requestsList!![position])
+        holder.bind(requestsList!![position], activity)
+    }
+
+    fun setData(newList: MutableList<BookRequestModel>?, myActivity: FragmentActivity) {
+        requestsList = newList?.toMutableList()
+        activity = myActivity
+        notifyDataSetChanged()
     }
 
     fun setData(newList: MutableList<BookRequestModel>?) {

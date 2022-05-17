@@ -6,6 +6,7 @@ import { PostModel } from '../models/servicePostModel.js'
 import dotenv from 'dotenv'
 import { AvailabilityModel } from '../models/specialistAvailabilityModel.js'
 import { BookRequestModel } from '../models/requestModel.js'
+import nodemailer from 'nodemailer'
 dotenv.config();
 export class MobileAccountController {
 
@@ -227,6 +228,108 @@ export class MobileAccountController {
                 .json(items)
         } catch (error) {
             next(error)
+        }
+    }
+
+    // request should contain fields: clientEmail, specialistID, clientID, availabilityItemID
+    async approveRequest(req, res, next) {
+        try {
+            const timeSlot = await AvailabilityModel.find({
+                _id: req.body.availabilityItemID
+            })
+            //console.log("111111")
+            const message = { message: "book request approved successfuly" }
+            // send email to user
+            const clientEmail = req.body.clientEmail
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL,
+                    pass: process.env.PASS
+                }
+            });
+
+            var mailOptions = {
+                from: process.env.EMAIL,
+                to: clientEmail,
+                subject: 'Specialist response for availability book request',
+                text: 'Dear client,\nthank you for the interest in the services I offer. Your request was approved. I will be waiting for you at the selected time!\nHave a nice day!'
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+            //delete availability item
+            const responseAvailability = await AvailabilityModel.deleteOne({ _id: req.body.availabilityItemID })
+            if (responseAvailability.deletedCount === 0) {
+                console.log("error appeared while deleting availability item")
+            }
+            //delete book request
+            const response = await BookRequestModel.deleteOne({
+                specialistID: req.body.specialistID,
+                clientID: req.body.clientID,
+                availabilityItemID: req.body.availabilityItemID
+            })
+            if (response.deletedCount === 0) {
+                console.log("error appeared while deleting book request")
+            }
+            res
+                .status(200)
+                .json(message)
+        } catch (error) {
+            next(error)
+            res.json(error)
+        }
+    }
+    // request should contain fields: clientEmail, specialistID, clientID, availabilityItemID
+    async declineRequest(req, res, next) {
+        try {
+            //console.log("111111")
+            const message = { message: "book request declined successfuly" }
+            // send email to user
+            const clientEmail = req.body.clientEmail
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL,
+                    pass: process.env.PASS
+                }
+            });
+
+            var mailOptions = {
+                from: process.env.EMAIL,
+                to: clientEmail,
+                subject: 'Specialist response for availability book request',
+                text: 'Dear client,\nthank you for the interest in the services I offer. Regrettably, I will be unavailable to serve you on the chosen date. I would appreciate it if you could choose another time slot.\nHave a nice day! '
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+
+            //delete book request
+            const response = await BookRequestModel.deleteOne({
+                specialistID: req.body.specialistID,
+                clientID: req.body.clientID,
+                availabilityItemID: req.body.availabilityItemID
+            })
+            if (response.deletedCount === 0) {
+                console.log("error appeared while deleting book request")
+            }
+            res
+                .status(200)
+                .json(message)
+        } catch (error) {
+            next(error)
+            res.json(error)
         }
     }
 }

@@ -54,3 +54,13 @@ router.get('/bookRequests',
   (req, res, next) => jwtService.authenticateJWT(req, res, next),
   (req, res, next) => controller.getBookRequest(req, res, next)
 )
+
+router.post('/acceptBookRequest',
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => controller.approveRequest(req, res, next)
+)
+
+router.post('/declineBookRequest',
+  (req, res, next) => jwtService.authenticateJWT(req, res, next),
+  (req, res, next) => controller.declineRequest(req, res, next)
+)
