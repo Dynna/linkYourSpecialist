@@ -5,6 +5,7 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Services from '@/components/Services/Index'
 import ViewService from '@/components/ViewService'
+import BookRequest from '@/components/BookRequest'
 
 Vue.use(Router)
 
@@ -34,6 +35,16 @@ export default new Router({
       path: '/services/:serviceId&:specialistId',
       name: 'service',
       component: ViewService
+    },
+    {
+      path: '/services/:serviceId&:specialistId',
+      name: 'service',
+      component: ViewService
+    },
+    {
+      path: '/services/:specialistId&:clientId&:clientEmail&:availabilityItemId&:date&:startTime&:endTime&:specialistEmail&:specialistName',
+      name: 'bookRequest',
+      component: BookRequest
     },
     // {
     //   path: '/services/:serviceId&:specialistId',

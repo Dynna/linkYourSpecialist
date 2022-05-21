@@ -39,7 +39,26 @@
                         </div>
                         <div class="">
                             Time: {{availabilityItem.startTime}} - {{availabilityItem.endTime}}
-                        </div>  
+                        </div> 
+                        <v-btn
+                            dark
+                            class="green darken-3"
+                            :to="{
+                                name: 'bookRequest',
+                                params: {
+                                    specialistId: servicepost.specialistInfo.id,
+                                    clientId: userId,
+                                    clientEmail: userEmail,
+                                    availabilityItemId: availabilityItem._id,
+                                    date: availabilityItem.date,
+                                    startTime: availabilityItem.startTime,
+                                    endTime: availabilityItem.endTime,
+                                    specialistEmail: servicepost.specialistInfo.email,
+                                    specialistName: servicepost.specialistInfo.name
+                                }
+                            }">
+                            Book
+                        </v-btn> 
                     </v-flex>
                 </v-layout>
             </div>
@@ -76,7 +95,9 @@ export default {
     data () {
         return {
             servicepost: null,
-            availabilityItems: null
+            availabilityItems: null,
+            userId: this.$store.state.user.id,
+            userEmail: this.$store.state.user.email
         }
     },
     async mounted () {

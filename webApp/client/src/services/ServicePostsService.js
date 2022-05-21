@@ -8,8 +8,12 @@ export default {
       }
     })
   },
-  //to add specialist ID somehow
+  
   show (serviceId, specialistId) {
     return Api().get(`services/${serviceId}&${specialistId}`)
+  },
+
+  insertBookRequest (specialistId, clientId, clientEmail, availabilityItemId, date, startTime, endTime, specialistEmail, specialistName) {
+    return Api().post(`services/${specialistId}&${clientId}&${clientEmail}&${availabilityItemId}&${date}&${startTime}&${endTime}&${specialistEmail}&${specialistName}`)
   }
 }

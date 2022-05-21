@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "css-mqpacker": "^7.0.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "vue": "^2.4.2",
     "vue-router": "^3.0.1",
