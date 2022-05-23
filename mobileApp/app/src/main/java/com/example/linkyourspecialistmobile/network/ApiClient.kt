@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-const val BASEURL = "http://10.0.2.2:4002"
-//const val BASEURL = "http://192.168.100.10:4002"
+//const val BASEURL = "http://10.0.2.2:4002"
+const val BASEURL = "https://link-your-specialist-backend2.herokuapp.com"
 
 class ApiClient {
     companion object {
