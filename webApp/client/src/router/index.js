@@ -46,6 +46,10 @@ export default new Router({
       name: 'bookRequest',
       component: BookRequest
     },
+    {
+      path: '*',
+      redirect: 'services'
+    }
     // {
     //   path: '/services/:serviceId&:specialistId',
     //   name: 'service',

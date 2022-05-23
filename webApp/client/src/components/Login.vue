@@ -44,8 +44,6 @@ export default {
           email: this.email,
           password: this.password
         })
-        console.log("RES", response.data.user.email, response.data.user.id)
-        console.log("here=",response.data.access_token)
         this.$store.dispatch('setToken', response.data.access_token)
         this.$store.dispatch('setUser', response.data.user)
         this.$router.push('/') 
@@ -59,8 +57,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.error {
-  color: red;
-}
 </style>

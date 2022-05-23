@@ -1,7 +1,7 @@
 <template>
     <panel title="Search">
       <v-text-field 
-        label="Search by title, category" 
+        label="Search by title, category, location, description" 
         v-model="search">
 
       </v-text-field>
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   data () {
     return {
@@ -16,7 +18,7 @@ export default {
     }
   },
   watch: {
-    search(value) {
+    search: _.debounce(async function (value) {
       const route = {
         name: 'services'
       }
@@ -26,7 +28,7 @@ export default {
         }
       }
       this.$router.push(route)
-    },
+    }, 700),
     '$route.query.search': {
       immediate: true,
       handler (value) {

@@ -14,6 +14,14 @@
                             {{format_date(bookRequestInfo.book_request.date)}}
                             at {{bookRequestInfo.book_request.startTime}}.
                         </div>
+                        <v-btn
+                            dark
+                            class="green darken-3"
+                            :to="{
+                                name: 'services',
+                            }">
+                            Go back
+                        </v-btn> 
                     </v-flex>
                 </v-layout>
             </div>

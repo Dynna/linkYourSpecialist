@@ -9,6 +9,9 @@
                     </div>
                     <div class="service-category">
                         category: {{servicepost.post.category}}
+                    </div> 
+                    <div class="service-location">
+                        location: {{servicepost.post.location}}
                     </div>   
                     <div class="service-description">
                         {{servicepost.post.description}}
@@ -146,6 +149,10 @@ export default {
     padding-top: 6px;
     font-size: 19px;
     border-bottom: 3px solid #b5e7a0;
+}
+
+.service-location {
+    font-size: 12px;
 }
 
 </style>

@@ -13,6 +13,9 @@
                 <div class="service-category">
                     {{service.category}}
                 </div>
+                <div class="service-location">
+                    {{service.location}}
+                </div>
 
             <v-btn
                 dark
@@ -74,7 +77,7 @@ export default {
 <style scoped>
 .service {
     padding: 20px;
-    height: 210px;
+    height: 220px;
     overflow: hidden;
     border-bottom: 4px solid #b5e7a0;
 }
@@ -90,6 +93,10 @@ export default {
 .service-description {
     font-size: 18px;
     margin-bottom: 5px;
+}
+
+.service-location {
+    font-size: 14px;
 }
 
 </style>
