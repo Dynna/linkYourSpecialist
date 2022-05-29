@@ -13,7 +13,7 @@ export default {
     return Api().get(`services/${serviceId}&${specialistId}`)
   },
 
-  insertBookRequest (specialistId, clientId, clientEmail, availabilityItemId, date, startTime, endTime, specialistEmail, specialistName) {
-    return Api().post(`services/${specialistId}&${clientId}&${clientEmail}&${availabilityItemId}&${date}&${startTime}&${endTime}&${specialistEmail}&${specialistName}`)
+  insertBookRequest (specialistId, clientId, clientEmail, availabilityItemId, date, startTime, endTime, description, specialistEmail, specialistName) {
+    return Api().post(`services/${specialistId}&${clientId}&${clientEmail}&${availabilityItemId}&${date}&${startTime}&${endTime}&${description}&${specialistEmail}&${specialistName}`)
   }
 }
