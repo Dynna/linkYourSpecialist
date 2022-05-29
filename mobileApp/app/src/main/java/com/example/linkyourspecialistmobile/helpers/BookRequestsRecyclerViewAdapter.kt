@@ -24,7 +24,7 @@ class BookRequestsRecyclerViewAdapter :
     val homeRepository = HomeRepository()
     private lateinit var userSharedPreferences: SharedPreferences
     private lateinit var activity: FragmentActivity
-    var viewModel = BookRequestViewModel()
+
     inner class MyViewHolder(binding: RequestItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -34,6 +34,7 @@ class BookRequestsRecyclerViewAdapter :
         private val endTime: TextView = binding.endTime
         private val approveButton: Button = binding.approveButton
         private val rejectButton: Button = binding.rejectButton
+        private val description: TextView = binding.description
 
         @SuppressLint("SetTextI18n")
         fun bind(item: BookRequestModel, activity: FragmentActivity) {
@@ -49,16 +50,15 @@ class BookRequestsRecyclerViewAdapter :
                     userSharedPreferences.getString("access_token", "not logged in").toString()
 
             itemView.apply {
-                request.text = request.text.toString() + " " + item.clientEmail
+                request.text = "Request to book time availability slot by: " + item.clientEmail
                 date.text = "Date (yyyy/mm/dd): " + dateFormat[0]
                 startTime.text = "Start Time: " + item.startTime
                 endTime.text = "End Time: " + item.endTime
+                description.text = "Description " + item.description
                 approveButton.setOnClickListener {
-                    //Log.d("REQUEST", "APPROVE")
                     homeRepository.approveBookRequest(accessToken, bookResponseModel)
                 }
                 rejectButton.setOnClickListener {
-                    //Log.d("REQUEST", "Decline")
                     homeRepository.declineBookRequest(accessToken, bookResponseModel)
                 }
             }

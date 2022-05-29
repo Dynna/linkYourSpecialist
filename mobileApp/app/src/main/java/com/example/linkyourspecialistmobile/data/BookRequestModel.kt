@@ -20,6 +20,10 @@ data class BookRequestModel(
     @Expose
     var availabilityItemID: String? = "",
 
+    @SerializedName("description")
+    @Expose
+    var description: String? = "",
+
     @SerializedName("date")
     @Expose
     var date: String? = "",

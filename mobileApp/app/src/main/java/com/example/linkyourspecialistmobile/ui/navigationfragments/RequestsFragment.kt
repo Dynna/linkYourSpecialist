@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.databinding.FragmentAvailabilityBinding
 import com.example.linkyourspecialistmobile.databinding.FragmentRequestsBinding
@@ -24,6 +25,7 @@ class RequestsFragment : Fragment() {
     private lateinit var viewModel: BookRequestViewModel
     private lateinit var adapter: BookRequestsRecyclerViewAdapter
     private lateinit var binding: FragmentRequestsBinding
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,17 @@ class RequestsFragment : Fragment() {
         val userid: String =
             userSharedPreferences.getString("id", "not found").toString()
 
+        getBookRequests(accessToken, userid)
+
+        swipeRefreshLayout = binding.swiperefresh
+        swipeRefreshLayout.setOnRefreshListener {
+            getBookRequests(accessToken, userid)
+            swipeRefreshLayout.isRefreshing = false
+        }
+        return binding.root
+    }
+
+    private fun getBookRequests(accessToken: String, userid: String) {
         viewModel.getBookRequests(accessToken, userid)
         viewModel.bookRequests?.observe(
             this, Observer {
@@ -57,6 +70,5 @@ class RequestsFragment : Fragment() {
                 }
             }
         )
-        return binding.root
     }
 }
