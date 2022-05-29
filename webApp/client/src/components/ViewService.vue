@@ -56,6 +56,7 @@
                                     date: availabilityItem.date,
                                     startTime: availabilityItem.startTime,
                                     endTime: availabilityItem.endTime,
+                                    description: availabilityItem.description,
                                     specialistEmail: servicepost.specialistInfo.email,
                                     specialistName: servicepost.specialistInfo.name
                                 }
@@ -77,12 +78,15 @@
                     <div class="contacts">
                         Email: {{servicepost.specialistInfo.email}}
                     </div>
-                    <div class="contacts">
+                    <div class="contacts" v-if="servicepost.specialistInfo.phone">
                         Phone: {{servicepost.specialistInfo.phone}}
                     </div>
-                    <div class="contacts">
+                    <div class="contacts" v-if="servicepost.specialistInfo.location">
                         Location: {{servicepost.specialistInfo.location}}
                     </div>   
+                    <div class="contacts" v-if="servicepost.specialistInfo.experience">
+                        Experience: {{servicepost.specialistInfo.experience}}
+                    </div> 
                 </v-flex>
             </v-layout>
         </panel>

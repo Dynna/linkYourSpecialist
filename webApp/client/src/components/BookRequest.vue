@@ -51,6 +51,7 @@ export default {
         const date = this.$store.state.route.params.date
         const startTime = this.$store.state.route.params.startTime
         const endTime = this.$store.state.route.params.endTime
+        const description = this.$store.state.route.params.description
         const specialistEmail = this.$store.state.route.params.specialistEmail
         const specialistName = this.$store.state.route.params.specialistName
         this.bookRequestInfo = (await ServicePostsService.insertBookRequest(specialistId, 
@@ -60,6 +61,7 @@ export default {
                                                                             date,
                                                                             startTime,
                                                                             endTime,
+                                                                            description,
                                                                             specialistEmail,
                                                                             specialistName
                                                                             )).data

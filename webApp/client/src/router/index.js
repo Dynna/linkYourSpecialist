@@ -42,7 +42,7 @@ export default new Router({
       component: ViewService
     },
     {
-      path: '/services/:specialistId&:clientId&:clientEmail&:availabilityItemId&:date&:startTime&:endTime&:specialistEmail&:specialistName',
+      path: '/services/:specialistId&:clientId&:clientEmail&:availabilityItemId&:description&:date&:startTime&:endTime&:specialistEmail&:specialistName',
       name: 'bookRequest',
       component: BookRequest
     },
