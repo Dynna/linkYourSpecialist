@@ -22,7 +22,6 @@ class AvailabilityRecyclerViewAdapter :
         private val date: TextView = binding.availabilityDate
         private val startTime: TextView = binding.availabilityStartTime
         private val endTime: TextView = binding.availabilityEndTime
-        private val deleteButton: ImageButton = binding.deleteButton
 
         @SuppressLint("SetTextI18n")
         fun bind(item: AvailabilityItemModel) {
@@ -36,9 +35,6 @@ class AvailabilityRecyclerViewAdapter :
                 date.text = "Date (yyyy/mm/dd): " + dateFormat[0]
                 startTime.text = "Start Time: " + item.startTime
                 endTime.text = "End Time: " + item.endTime
-                deleteButton.setOnClickListener {
-
-                }
             }
         }
     }
