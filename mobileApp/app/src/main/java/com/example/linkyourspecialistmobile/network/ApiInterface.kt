@@ -24,9 +24,10 @@ interface ApiInterface {
     ): Call<NewPostModel>
 
     @POST("/api/mobileUsers/updateUser")
-    fun updateProfile(@Header("authorization") authorizationHeader: String?,
-                      @Header("userid") userid: String?,
-                      @Body updateProfileRequestModel: UpdateProfileRequestModel
+    fun updateProfile(
+        @Header("authorization") authorizationHeader: String?,
+        @Header("userid") userid: String?,
+        @Body updateProfileRequestModel: UpdateProfileRequestModel
     ): Call<RegistrationResponseModel>
 
     //availability requests
@@ -59,4 +60,16 @@ interface ApiInterface {
         @Header("authorization") authorizationHeader: String?,
         @Body bookResponseModel: BookResponseModel
     ): Call<BookResponseModel>
+
+    @DELETE("/api/mobileUsers/deletePost")
+    fun deletePost(
+        @Header("authorization") authorizationHeader: String?,
+        @Header("postid") postID: String?
+    ): Call<PostModelResponse>
+
+    @DELETE("/api/mobileUsers/deleteAvailability")
+    fun deleteAvailability(
+        @Header("authorization") authorizationHeader: String?,
+        @Header("availabilityid") availabilityID: String?
+    ): Call<AvailabilityItemModel>
 }

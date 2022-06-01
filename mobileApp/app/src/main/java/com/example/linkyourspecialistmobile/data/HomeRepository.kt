@@ -298,4 +298,54 @@ class HomeRepository {
                 }
             })
     }
+
+    fun deletePost(
+        authorizationHeader: String?,
+        postID: String?
+    ) {
+
+        apiInterface?.deletePost(authorizationHeader, postID)
+            ?.enqueue(object : Callback<PostModelResponse> {
+                override fun onFailure(call: Call<PostModelResponse>, t: Throwable) {
+                    Log.d("DELETE_POST", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<PostModelResponse>,
+                    response: Response<PostModelResponse>
+                ) {
+                    Log.d("RESPONSE_CODE", response.code().toString())
+                    if (response.code() == 204) {
+                        Log.d("DELETE_POST", "successfully deleted")
+                    } else {
+                        Log.d("DELETE_POST", "not deleted some error appear")
+                    }
+                }
+            })
+    }
+
+    fun deleteAvailability(
+        authorizationHeader: String?,
+        availabilityID: String?
+    ) {
+
+        apiInterface?.deleteAvailability(authorizationHeader, availabilityID)
+            ?.enqueue(object : Callback<AvailabilityItemModel> {
+                override fun onFailure(call: Call<AvailabilityItemModel>, t: Throwable) {
+                    Log.d("DELETE_AVAILABILITY", "FAIL")
+                }
+
+                override fun onResponse(
+                    call: Call<AvailabilityItemModel>,
+                    response: Response<AvailabilityItemModel>
+                ) {
+                    Log.d("RESPONSE_CODE", response.code().toString())
+                    if (response.code() == 204) {
+                        Log.d("DELETE_AVAILABILITY", "successfully deleted")
+                    } else {
+                        Log.d("DELETE_AVAILABILITY", "not deleted some error appear")
+                    }
+                }
+            })
+    }
 }

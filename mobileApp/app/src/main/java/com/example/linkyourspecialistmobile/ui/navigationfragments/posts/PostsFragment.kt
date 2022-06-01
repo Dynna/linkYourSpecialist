@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.databinding.FragmentPostsBinding
 import com.example.linkyourspecialistmobile.helpers.PostsRecyclerViewAdapter
@@ -22,6 +23,7 @@ class PostsFragment : Fragment() {
     private lateinit var adapter: PostsRecyclerViewAdapter
     private lateinit var binding: FragmentPostsBinding
     private lateinit var addNewPostButton: ImageButton
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,17 +50,26 @@ class PostsFragment : Fragment() {
                 userSharedPreferences.getString("access_token", "not logged in").toString()
         val userid: String =
             userSharedPreferences.getString("id", "not found").toString()
+        getPosts(accessToken, userid)
 
+        swipeRefreshLayout = binding.swipeRefresh
+        swipeRefreshLayout.setOnRefreshListener {
+            getPosts(accessToken, userid)
+            swipeRefreshLayout.isRefreshing = false
+        }
+        return binding.root
+    }
+
+    private fun getPosts(accessToken: String?, userid: String?) {
         viewModel.getPosts(accessToken, userid)
         viewModel.posts?.observe(
             this, Observer {
                 if (it != null) {
-                    adapter.setData(it)
+                    adapter.setData(it, activity!!)
                 } else {
                     Toast.makeText(context, "can't get posts", Toast.LENGTH_SHORT).show()
                 }
             }
         )
-        return binding.root
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linkyourspecialistmobile.R
 import com.example.linkyourspecialistmobile.databinding.FragmentAvailabilityBinding
 import com.example.linkyourspecialistmobile.helpers.AvailabilityRecyclerViewAdapter
@@ -23,6 +24,7 @@ class AvailabilityFragment : Fragment() {
     private lateinit var adapter: AvailabilityRecyclerViewAdapter
     private lateinit var binding: FragmentAvailabilityBinding
     private lateinit var addItemButton: ImageButton
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,18 +46,13 @@ class AvailabilityFragment : Fragment() {
                 userSharedPreferences.getString("access_token", "not logged in").toString()
         val userid: String =
             userSharedPreferences.getString("id", "not found").toString()
+        getAvailabilityItems(accessToken, userid)
 
-        viewModel.getAvailabilityItems(accessToken, userid)
-        viewModel.availabilityItems?.observe(
-            this, Observer {
-                if (it != null) {
-                    adapter.setData(it)
-                } else {
-                    Toast.makeText(context, "can't get availability items", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        )
+        swipeRefreshLayout = binding.swipeRefresh
+        swipeRefreshLayout.setOnRefreshListener {
+            getAvailabilityItems(accessToken, userid)
+            swipeRefreshLayout.isRefreshing = false
+        }
 
         addItemButton = binding.addNewAvailabilityButton
         addItemButton.setOnClickListener {
@@ -63,5 +60,19 @@ class AvailabilityFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun getAvailabilityItems(accessToken: String?, userid: String?) {
+        viewModel.getAvailabilityItems(accessToken, userid)
+        viewModel.availabilityItems?.observe(
+            this, Observer {
+                if (it != null) {
+                    adapter.setData(it, activity!!)
+                } else {
+                    Toast.makeText(context, "can't get availability items", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        )
     }
 }

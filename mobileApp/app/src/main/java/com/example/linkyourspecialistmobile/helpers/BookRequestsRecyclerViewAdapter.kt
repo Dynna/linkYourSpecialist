@@ -54,7 +54,7 @@ class BookRequestsRecyclerViewAdapter :
                 date.text = "Date (yyyy/mm/dd): " + dateFormat[0]
                 startTime.text = "Start Time: " + item.startTime
                 endTime.text = "End Time: " + item.endTime
-                description.text = "Description " + item.description
+                description.text = "Description: " + item.description
                 approveButton.setOnClickListener {
                     homeRepository.approveBookRequest(accessToken, bookResponseModel)
                 }
@@ -85,8 +85,8 @@ class BookRequestsRecyclerViewAdapter :
         notifyDataSetChanged()
     }
 
-    fun setData(newList: MutableList<BookRequestModel>?) {
+/*    fun setData(newList: MutableList<BookRequestModel>?) {
         requestsList = newList?.toMutableList()
         notifyDataSetChanged()
-    }
+    }*/
 }

@@ -6,13 +6,19 @@
     android:background="@color/olive_background"
     tools:context=".ui.navigationfragments.availability.AvailabilityFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/availabilityRecyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="65dp">
+        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/availabilityRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="65dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ImageButton
         android:id="@+id/addNewAvailabilityButton"
@@ -21,6 +27,6 @@
         android:layout_marginLeft="300dp"
         android:layout_marginTop="560dp"
         android:background="@null"
-        android:src="@drawable/add_circle_bottom_nav"/>
+        android:src="@drawable/add_circle_bottom_nav" />
 
 </FrameLayout>
